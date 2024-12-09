@@ -6,7 +6,7 @@
 /*   By: koseki.yusuke <koseki.yusuke@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:52:53 by koseki.yusu       #+#    #+#             */
-/*   Updated: 2024/12/09 11:55:25 by koseki.yusu      ###   ########.fr       */
+/*   Updated: 2024/12/09 12:00:35 by koseki.yusu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ class Span{
         std::vector<int> _vec;
     public:
         Span();
-        Span(unsigned int _N);
+        Span(unsigned int N);
         Span(Span const &other);
         Span& operator=(Span const &other);
         ~Span();

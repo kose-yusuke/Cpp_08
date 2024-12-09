@@ -6,15 +6,16 @@
 /*   By: koseki.yusuke <koseki.yusuke@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:52:44 by koseki.yusu       #+#    #+#             */
-/*   Updated: 2024/12/09 11:58:26 by koseki.yusu      ###   ########.fr       */
+/*   Updated: 2024/12/09 12:01:28 by koseki.yusu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
 
-Span::Span(){}
+Span::Span() : _N(0)
+{}
 
-Span::Span(unsigned int _N)
+Span::Span(unsigned int N) : _N(N)
 {
     
 }
@@ -50,7 +51,7 @@ unsigned int Span::shortestSpan()
     std::vector<int> tmp = _vec;
     std::sort(tmp.begin(), tmp.end());
     int min = tmp[1] - tmp[0];
-    for (unsigned int i = 0; i < tmp.size(); i++)
+    for (unsigned int i = 1; i < tmp.size(); i++)
     {
         if (tmp[i] - tmp[i-1] < min)
             min = tmp[i] - tmp[i-1];
