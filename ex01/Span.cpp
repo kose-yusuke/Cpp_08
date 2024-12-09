@@ -6,7 +6,7 @@
 /*   By: koseki.yusuke <koseki.yusuke@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:52:44 by koseki.yusu       #+#    #+#             */
-/*   Updated: 2024/12/05 22:03:43 by koseki.yusu      ###   ########.fr       */
+/*   Updated: 2024/12/09 11:58:26 by koseki.yusu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,50 @@ Span::Span(Span const &other)
 Span &Span::operator=(Span const &other)
 {
     if (this != &other)
-		*this = other;
+    {
+        _N = other._N; 
+        _vec = other._vec;  
+    }
 	return (*this);
+}
+
+void Span::addNumber(int n)
+{
+    if (_vec.size() >= _N)
+        throw ContainerFullException();
+    _vec.push_back(n);
+}
+
+unsigned int Span::shortestSpan()
+{
+    if (_vec.size() <= 1)
+        throw ShortageNumberException();
+    std::vector<int> tmp = _vec;
+    std::sort(tmp.begin(), tmp.end());
+    int min = tmp[1] - tmp[0];
+    for (unsigned int i = 0; i < tmp.size(); i++)
+    {
+        if (tmp[i] - tmp[i-1] < min)
+            min = tmp[i] - tmp[i-1];
+    }
+    return (min);
+}
+
+unsigned int Span::longestSpan()
+{
+    if (_vec.size() <= 1)
+        throw ShortageNumberException();
+    std::vector<int> tmp = _vec;
+    std::sort(tmp.begin(), tmp.end());
+    return (tmp[tmp.size()-1] - tmp[0]);
+}
+
+const char *Span::ContainerFullException::what() const throw()
+{
+    return ("Container is full");
+}
+
+const char *Span::ShortageNumberException::what() const throw()
+{
+    return ("Lack of number in container");
 }
