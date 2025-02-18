@@ -6,7 +6,7 @@
 /*   By: koseki.yusuke <koseki.yusuke@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:52:31 by koseki.yusu       #+#    #+#             */
-/*   Updated: 2024/12/09 13:27:40 by koseki.yusu      ###   ########.fr       */
+/*   Updated: 2025/02/18 16:16:29 by koseki.yusu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int main(){
     Span big_num_sp = Span(N);
 
     std::vector<int> numbers;
-    std::srand(static_cast<unsigned int>(time(NULL)));
+    srand(static_cast<unsigned int>(time(NULL)));
     for (unsigned int i = 0; i < N; i++)
     {
         int random_int = rand() % 1000000;
