@@ -6,7 +6,7 @@
 /*   By: koseki.yusuke <koseki.yusuke@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:52:53 by koseki.yusu       #+#    #+#             */
-/*   Updated: 2025/02/18 16:15:58 by koseki.yusu      ###   ########.fr       */
+/*   Updated: 2025/02/18 16:21:15 by koseki.yusu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <exception>
 #include <vector>
 #include <cstdlib> 
+#include <algorithm>
 
 class Span{
     private:
