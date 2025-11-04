@@ -1,0 +1,126 @@
+Assignment name: mini_db
+Expected files : *. cpp *. hpp
+-----------------------------------------------------------------
+
+課題名: mini_db
+提出ファイル : *.cpp *.hpp
+-----------------------------------------------------------------
+
+Write a program that takes as an argument a port and a path.
+Your program must listen for clients to connect on 127.0.0.1 on the given port.
+
+ポート番号とパスを引数として受け取るプログラムを作成してください。
+プログラムは、指定されたポートで 127.0.0.1 上のクライアント接続をリッスンしなければなりません。
+
+When your program is ready to accept incoming connections, it will print "ready\n" on
+the standard output.
+
+プログラムが接続を受け入れる準備ができたら、標準出力に "ready\n" を出力します。
+
+Your program will receive commands from the connected clients and will maintain a
+database of key-values.
+
+プログラムは、接続されたクライアントからコマンドを受信し、キーと値のデータベースを維持します。
+
+The connections are persistent, which means that a program can send multiple
+commands in a single session.
+
+接続は永続的です。つまり、プログラムは1つのセッションで複数のコマンドを送信できます。
+
+The commands are the following:
+
+コマンドは以下の通りです:
+
+POST:
+synopsis:		POST <key> <value>
+description:	add an entry to the db
+return value:	"0"
+
+POST:
+書式:			POST <key> <value>
+説明:			データベースにエントリを追加
+戻り値:		"0"
+
+GET:
+synopsis:		GET <key>
+description:	retrieve an entry from the db
+return value:	"0 <value>" or "1" if the key does not exist
+
+GET:
+書式:			GET <key>
+説明:			データベースからエントリを取得
+戻り値:		キーが存在する場合は "0 <value>"、存在しない場合は "1"
+
+DELETE:
+synopsis:		DELETE <key>
+description:	erase an entry in the db
+return value:	return "0" if the key was successfully erased or "1" if the key does not exist
+
+DELETE:
+書式:			DELETE <key>
+説明:			データベースのエントリを削除
+戻り値:		キーが正常に削除された場合は "0"、キーが存在しない場合は "1"
+
+If a command is not recognized your program must respond "2".
+
+コマンドが認識されない場合、プログラムは "2" を返さなければなりません。
+
+Keys and values will be of arbitrary size and will not contain any white spaces,
+but the size of a request will never exceed 1000 characters.
+
+キーと値は任意のサイズで、空白文字を含みませんが、リクエストのサイズは1000文字を超えません。
+
+Your program must be efficient.
+
+プログラムは効率的でなければなりません。
+
+Data persistence:
+
+データの永続化:
+
+When your program receives the SIGINT signal, it must save the current database (i.e. all the
+key-value pairs) to the file path given as an argument and exit.
+
+プログラムがSIGINTシグナルを受信したら、現在のデータベース（つまりすべてのキーと値のペア）を引数で指定されたファイルパスに保存して終了しなければなりません。
+
+Each time your program starts, it will look for the presence of this file
+and load it.
+
+プログラムが起動するたびに、このファイルの存在を確認して読み込みます。
+
+Hint: you can use nc to test your program.
+
+ヒント: プログラムのテストには nc を使用できます。
+
+You will find in this directory a file containing some network code in case you
+have forgotten how it works.
+
+このディレクトリには、動作方法を忘れた場合に備えて、ネットワークコードを含むファイルがあります。
+
+Example:
+
+例:
+
+$> ./mini_db 1111 ,save &
+$> nc localhost 1111 | cat -e
+POST A B
+O$
+POST B C
+0$
+GET A
+0 B$
+GET C
+1$
+DELETE A
+O$
+DELETE C
+1$
+UNKNOWN_COMMAND
+2$
+^C
+$> pkill -SIGINT mini_db
+$> ./mint_db 1111 .save &
+$> echo "GET B" | nc localhost 1111 | cat -e
+0 C$
+S>
+exam@e4r5p1 :~ /subjects/mini_db$
